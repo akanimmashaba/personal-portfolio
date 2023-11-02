@@ -1,0 +1,1 @@
+const{createApp,ref}=Vue;createApp({el:'#app',delimiters:['[[',']]'],setup(){const Name=ref('AKANI MASHABA');return{Name};}}).mount('#app');;

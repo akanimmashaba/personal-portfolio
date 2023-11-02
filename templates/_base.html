@@ -1,0 +1,114 @@
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django + Tailwind CSS + Flowbite</title>
+
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+
+    {% endcompress %}
+    {% compress js %}
+    <script src="{% static 'src/script.js' %}" type="text/javascript" charset="utf-8"></script>
+    {% endcompress %}
+
+</head>
+
+<body>
+  <div id="app" class="flex h-screen">
+    <header class="bg-white border-b absolute inset-x-0  top-0 z-50">
+      <nav class=" mx-auto max-w-7xl px-2 sm:px-6 flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <div class="flex lg:flex-1">
+          <a href="{{ .Site.Params.homepage }}/" class="flex items-center">
+            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"> [[ message ]] </span>
+        </a>
+        </div>
+        <div class="flex lg:hidden">
+          <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+            <span class="sr-only">Open main menu</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-12">
+          <a href="{% url 'index' %}" class="text-sm font-semibold leading-6 text-gray-900">Home</a>
+          <a href="{% url 'projects' %}" class="text-sm font-semibold leading-6 text-gray-900">Projects</a>
+          <a href="{% url 'service' %}" class="text-sm font-semibold leading-6 text-gray-900">Services</a>
+          <a href="{% url 'blog' %}" class="text-sm font-semibold leading-6 text-gray-900">Blog</a>
+        </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+          <a href="{% url 'contact' %}" class="text-sm font-semibold leading-6 text-gray-900">Contact Me <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </nav>
+      <!-- Mobile menu, show/hide based on menu open state. -->
+      <div class="hidden" role="dialog" aria-modal="true">
+        <!-- Background backdrop, show/hide based on slide-over state. -->
+        <div class="fixed inset-0 z-50"></div>
+        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <div class="flex items-center justify-between">
+            <a href="#" class="-m-1.5 p-1.5">
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"> [[ message ]]</span>
+            </a>
+            <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+              <span class="sr-only">Close menu</span>
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <div class="mt-6 flow-root ">
+            <div class="-my-6 divide-y divide-gray-500/10">
+              <div class="space-y-2 py-6">
+                <a href="{% url 'index' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Home</a>
+                <a href="{% url 'projects' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Projects</a>
+                <a href="{% url 'service' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Services</a>
+                <a href="{% url 'blog' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Blog</a>
+                <a href="{% url 'contact' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Contact me</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+   
+
+<main class="flex-grow container mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    {% block content %}
+    {% endblock content %}
+</main>
+
+<footer>
+    <!-- footer -->
+</footer>
+
+  </div>
+      
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+      const { createApp, ref } = Vue;
+
+      createApp({
+        el: '#app',
+        delimiters: ['[[', ']]'],
+        setup() {
+            
+          const message = ref('Hello vue!');
+          return {
+            message
+          };
+        }
+      }).mount('#app');
+    </script>
+
+</body>
+
+</html>
