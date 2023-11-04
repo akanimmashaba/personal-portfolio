@@ -9,111 +9,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Django + Tailwind CSS + Flowbite</title>
-
     {% compress css %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}">
 
     {% endcompress %}
-    {% compress js %}
-    <script src="{% static 'src/script.js' %}" type="text/javascript" charset="utf-8"></script>
-    {% endcompress %}
 
 </head>
 
-<body>
-  <div id="app" class="flex h-screen">
-    <header class="bg-white border-b absolute inset-x-0  top-0 z-50">
-      <nav class=" mx-auto max-w-7xl px-6 py-6 sm:px-6 flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-        <div class="flex lg:flex-1">
-          <a href="{{ .Site.Params.homepage }}/" class="flex items-center">
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"> AKANI MASHABA </span>
-        </a>
-        </div>
-        <div class="flex ">
-          <button @click="toggleIsOpen" type="button" class="md:hidden -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-            <span class="sr-only">Open main menu</span>
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-          </button>
-        </div>
-        <div class="hidden md:flex md:gap-x-12">
-          <a href="{% url 'index' %}" class="text-sm font-semibold leading-6 text-gray-900">Home</a>
-          <a href="{% url 'projects' %}" class="text-sm font-semibold leading-6 text-gray-900">Projects</a>
-          <a href="{% url 'service' %}" class="text-sm font-semibold leading-6 text-gray-900">Services</a>
-          <a href="{% url 'blog' %}" class="text-sm font-semibold leading-6 text-gray-900">Blog</a>
-        </div>
-        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="{% url 'contact' %}" class="text-sm font-semibold leading-6 text-gray-900">Contact Me <span aria-hidden="true">&rarr;</span></a>
-        </div>
-      </nav>
-      <!-- Mobile menu, show/hide based on menu open state. -->
-      <div class="menu" :class="{ 'hidden': !isOpen, 'block': isOpen }" class="inline-block" role="dialog" aria-modal="true">
-        <!-- Background backdrop, show/hide based on slide-over state. -->
-        <div class="fixed inset-0 z-50"></div>
-        <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-          <div class="flex items-center justify-between">
-            <a href="#" class="-m-1.5 p-1.5">
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"> AKANI MASHABA</span>
-            </a>
-            <button @click="toggleIsOpen"  type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
-              <span class="sr-only">Close menu</span>
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          <div class="mt-6 flow-root ">
-            <div class="-my-6 divide-y divide-gray-500/10">
-              <div class="space-y-2 py-6">
-                <a href="{% url 'index' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Home</a>
-                <a href="{% url 'projects' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Projects</a>
-                <a href="{% url 'service' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Services</a>
-                <a href="{% url 'blog' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Blog</a>
-                <a href="{% url 'contact' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Contact me</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+<body class="">
+  <div class="flex h-screen">
+<div>
+<nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between p-4">
+  <a href="{{ .Site.Params.homepage }}/" class="flex items-center">
+    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"> AKANI </span>
+  </a>
+  <div class="flex md:order-2">
+      <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+  </div>
+  <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+    <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+      <li>
+        <a href="{% url 'index' %}"  class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
+      </li>
+      <li>
+        <a href="{% url 'index' %}"  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+      </li>
+      <li>
+        <a href="{% url 'index' %}"  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+      </li>
+      <li>
+        <a href="{% url 'index' %}"  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</nav>
+</div>
+
    
 
-<main class="flex-grow container mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+<div class="flex-grow container mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     {% block content %}
     {% endblock content %}
-</main>
+</siv>
 
-<footer>
+<div>
     <!-- footer -->
 </footer>
 
   </div>
       
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
-    <script>
-      const { createApp, ref } = Vue;
-
-      createApp({
-        el: '#app',
-        delimiters: ['[[', ']]'],
-        setup() {
-            
-            const message = ref('Hello vue!');
-            const isOpen = false;
-            const toggleIsOpen = () => {isOpen.value = !isOpen.value;};
-
-            return {
-              message,
-              isOpen,
-              toggleIsOpen,
-            };
-        }
-      }).mount('#app');
-    </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
 </body>
 
 </html>
