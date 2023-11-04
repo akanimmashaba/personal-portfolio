@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import timezone
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -19,7 +20,7 @@ class TechStack(TimeStamp):
     a model for technology stacks that i have used before
     """
     name = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='tools/')
+    image = CloudinaryField('tech')
     description = models.TextField()
 
 class Project(models.Model):
@@ -27,7 +28,7 @@ class Project(models.Model):
     description = models.TextField()
     project_url = models.URLField()
     tech = models.ManyToManyField(TechStack)
-    image = models.ImageField(upload_to='projects/')
+    image = CloudinaryField('project')
 
 class Education(models.Model):
     degree = models.CharField(max_length=100)

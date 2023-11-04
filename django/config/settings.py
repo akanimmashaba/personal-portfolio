@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +46,7 @@ INSTALLED_APPS = [
     'resume',
     'contact',
     'blog',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -129,3 +135,10 @@ STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+          
+cloudinary.config( 
+  cloud_name = "dnghelf8m", 
+  api_key = "819519633195299", 
+  api_secret = "0tFukU2eW-ij30lZ1wdPDQ8lX7g" 
+)
