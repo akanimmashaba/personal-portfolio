@@ -137,8 +137,4 @@ STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
           
-cloudinary.config( 
-  cloud_name = "dnghelf8m", 
-  api_key = "819519633195299", 
-  api_secret = "0tFukU2eW-ij30lZ1wdPDQ8lX7g" 
-)
+
