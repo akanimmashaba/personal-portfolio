@@ -1,9 +1,18 @@
 from django.shortcuts import render
-
 # Create your views here.
+from .models import Project,Resume
+from blog.models import Post
 
 def index(request):
-    return render(request, 'index.html')
+    projects = Project.objects.all()
+    info = Resume.objects.first()
+    blog = Post.objects.all()
+    context = {
+        'projects': projects,
+        'info':info,
+        'blog':blog,
+    }
+    return render(request, 'index.html', context)
 
 def contact(request):
     return render(request,'contact.html')

@@ -15,6 +15,7 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 import environ
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,12 +27,11 @@ environ.Env.read_env()
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
-
+SECRET_KEY = env(‘SECRET_KEY’)
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['akanimashaba.co.za','www.akanimashaba.co.za']
+ALLOWED_HOSTS = ['127.0.0.1',]
 
 
 # Application definition
@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'resume',
     'contact',
     'blog',
-    'cloudinary'
+    'cloudinary',
+    'hitcount',
 ]
 
 MIDDLEWARE = [
@@ -84,10 +85,22 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
+if DEBUG:
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+    }
+else:
+ DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': '',
+        'NAME': env(‘DATABASE_NAME’),
+        'USER': env(‘DATABASE_USER’),
+        'PORT': env(‘DATABASE_PORT’),
+        'PASSWORD': env(‘DATABASE_PASS’),
     }
 }
 
@@ -126,9 +139,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATICFILES_DIRS = (BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
 COMPRESS_ROOT = BASE_DIR / 'static'
-
 COMPRESS_ENABLED = True
 
 STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
@@ -138,7 +152,6 @@ STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
           
-
 cloudinary.config( 
   cloud_name = "", 
   api_key = "", 

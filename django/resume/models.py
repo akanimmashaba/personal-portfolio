@@ -4,16 +4,20 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
+from django.db import models
+
+
+
+
+       
+
+
 class TimeStamp(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
         abstract = True  # Make this model abstract to prevent database table creation
-
-    def save(self, *args, **kwargs):
-        self.updated_at = timezone.now()
-        super(TimeStamp, self).save(*args, **kwargs)
 
 class TechStack(TimeStamp):
     """
@@ -26,14 +30,10 @@ class TechStack(TimeStamp):
 class Project(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    project_url = models.URLField()
-    tech = models.ManyToManyField(TechStack)
+    live_url = models.URLField()
+    github_url = models.URLField()
+    # tech = models.ManyToManyField(TechStack)
     image = CloudinaryField('project')
-
-class Education(models.Model):
-    degree = models.CharField(max_length=100)
-    institution = models.CharField(max_length=200)
-    graduation_year = models.PositiveIntegerField()
 
 class Hobby(TimeStamp):
     name = models.CharField(max_length=50)
@@ -43,10 +43,13 @@ class Skill(TimeStamp):
     name = models.CharField(max_length=50)
     proficiency = models.PositiveIntegerField()
 
+
 class Resume(TimeStamp):
-    pass
-    # first_name 
-    # last_name
-    # preferd_name
-    # professional_summary
-    
+    # Personal Information
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField(blank=True)
+    linkedin = models.URLField(blank=True)
+    github = models.URLField(blank=True)
+    image = CloudinaryField('selfie', folder='resume', blank=True, null=True)
+    professional_summary = models.TextField()
+    cv_url = models.URLField(blank=True)
