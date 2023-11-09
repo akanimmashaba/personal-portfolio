@@ -27,7 +27,7 @@ environ.Env.read_env()
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env(‘SECRET_KEY’)
+SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -95,12 +95,12 @@ if DEBUG:
 else:
  DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': '',
-        'NAME': env(‘DATABASE_NAME’),
-        'USER': env(‘DATABASE_USER’),
-        'PORT': env(‘DATABASE_PORT’),
-        'PASSWORD': env(‘DATABASE_PASS’),
+        'ENGINE': os.environ.get("SQL_ENGINE"),
+        'HOST': os.environ.get("SQL_HOST"),
+        'NAME': os.environ.get("SQL_NAME"),
+        'USER': os.environ.get("SQL_USER"),
+        'PORT': os.environ.get("SQL_PORT"),
+        'PASSWORD': os.environ.get("SQL_PASSWORD"),
     }
 }
 
